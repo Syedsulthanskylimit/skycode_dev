@@ -296,4 +296,4 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'lowcodesky2024@gmail.com'
 EMAIL_HOST_PASSWORD = 'xplp bgrf nmzp wikc'
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
