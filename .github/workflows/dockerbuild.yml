@@ -1,0 +1,61 @@
+# name: CI-CD Pipeline
+# on:
+#   push:
+#     branches: ["main"]
+# jobs:
+#   build_and_push:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#       - name: Login to Docker Hub
+#         uses: docker/login-action@v2
+#         with:
+#           username: ${{ secrets.DOCKER_USERNAME }}
+#           password: ${{ secrets.DOCKER_PASSWORD }}
+#       - name: Build and Push Images (web, worker, beat)
+#         run: |
+#           # Build
+#           docker build -t syedsulthanphp/backend_live:latest .
+#           docker build -t syedsulthanphp/skycode_worker:latest .
+#           docker build -t syedsulthanphp/skycode_beat:latest .
+#           # Push
+#           docker push syedsulthanphp/skycode_web:latest
+#           docker push syedsulthanphp/skycode_worker:latest
+#           docker push syedsulthanphp/skycode_beat:latest
+#   deploy_to_ec2:
+#     needs: build_and_push
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#       - name: Add SSH key
+#         run: |
+#           echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
+#           chmod 600 key.pem
+#       - name: Deploy using docker-compose on EC2
+#         run: |
+#           ssh -o StrictHostKeyChecking=no -i key.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+#             cd /home/ubuntu/LIVE   # your compose folder
+#             echo "Pulling latest images..."
+#             docker-compose pull
+#             echo "Restarting containers..."
+#             # docker-compose down
+#             docker-compose up -d
+#             echo "Deployment completed!"
+#           EOF
+
+name: CI-CD Pipeline
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  print-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello
+        run: echo "GitHub Actions called"
+
+
