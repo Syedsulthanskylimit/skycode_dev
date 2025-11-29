@@ -3,7 +3,7 @@ version: "3.9"
 services:
   backend_live:
     build: .
-    container_name: backend_qa
+    container_name: backend_live
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/app
@@ -22,7 +22,7 @@ services:
       - redis_live
     restart: always
 
-  worker_qa:
+  worker_live:
     build: .
     container_name: celery_worker
     command: celery -A formbuilder_backend worker --pool=solo -l info
@@ -42,7 +42,7 @@ services:
       - redis_live
     restart: always
 
-  beat_qa:
+  beat_live:
     build: .
     container_name: celery_beat
     command: celery -A formbuilder_backend beat -l info
@@ -51,8 +51,8 @@ services:
     environment:
       POSTGRES_USER: admin_user
       POSTGRES_PASSWORD: Skycode@2025
-      POSTGRES_DB: skycode_db_qa
-      POSTGRES_HOST: db_qa
+      POSTGRES_DB: skycode_db_live
+      POSTGRES_HOST: db_live
       POSTGRES_PORT: 5440
       REDIS_HOST: redis_live
       REDIS_PORT: 6340
@@ -62,7 +62,7 @@ services:
       - redis_live
     restart: always
 
-  db_qa :
+  db_live :
     image: postgres:17
     container_name: db_live
     restart: always
@@ -75,7 +75,7 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
 
-  redis_qa:
+  redis_live:
     image: redis:7
     container_name: redis_live
     command: ["redis-server", "--port", "6379"]

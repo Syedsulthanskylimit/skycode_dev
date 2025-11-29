@@ -19,44 +19,44 @@ SECRET_KEY = 'django-insecure-_zw7k@8s@nj%f+7n@_uobzuqwg1hc9_@*ayid=k&aee-0_ysw3
 # secret key used in production secret!
 
 # # DEV url
-# SITE_URL = 'http://65.2.101.254:3001'  # Frontend Url
-# BASE_URL = 'http://65.2.101.254:8010'  # Backend Url
+# SITE_URL = 'http://65.1.213.42:3001'  # Frontend Url
+# BASE_URL = 'http://65.1.213.42:8010'  # Backend Url
 # # QA url
-# SITE_URL = 'http://65.2.101.254:4001'  # Frontend Url
-# BASE_URL = 'http://65.2.101.254:8020'  # Backend Url
+# SITE_URL = 'http://65.1.213.42:4001'  # Frontend Url
+# BASE_URL = 'http://65.1.213.42:8020'  # Backend Url
 # Projects url
-# SITE_URL = 'http://65.2.101.254:5001'  # Frontend Url
-# BASE_URL = 'http://65.2.101.254:8030'  # Backend Url
+# SITE_URL = 'http://65.1.213.42:5001'  # Frontend Url
+# BASE_URL = 'http://65.1.213.42:8030'  # Backend Url
 # LIVE url
-SITE_URL = 'http://65.2.101.254:1001'  # Frontend Url
-BASE_URL = 'http://65.2.101.254:8040'  # Backend Url
+SITE_URL = 'http://65.1.213.42:1001'  # Frontend Url
+BASE_URL = 'http://65.1.213.42:8040'  # Backend Url
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # False
 
 # DEV
-# ALLOWED_HOSTS = ['*', 'http://65.2.101.254:8010']
+# ALLOWED_HOSTS = ['*', 'http://65.1.213.42:8010']
 # # QA
-# ALLOWED_HOSTS = ['*', 'http://65.2.101.254:8020']
+# ALLOWED_HOSTS = ['*', 'http://65.1.213.42:8020']
 # # Projects
-# ALLOWED_HOSTS = ['*', 'http://65.2.101.254:8030']
+# ALLOWED_HOSTS = ['*', 'http://65.1.213.42:8030']
 # LIVE
-ALLOWED_HOSTS = ['*', 'http://65.2.101.254:8040']
+ALLOWED_HOSTS = ['*', 'http://65.1.213.42:8040']
 
 
 
 # DEV
-# CSRF_TRUSTED_ORIGINS = ['http://65.2.101.254:8010']  # if we need to connect to Domain use as 'http://domain.com'
-# CORS_ALLOWED_ORIGINS = ['http://65.2.101.254:8010']
+# CSRF_TRUSTED_ORIGINS = ['http://65.1.213.42:8010']  # if we need to connect to Domain use as 'http://domain.com'
+# CORS_ALLOWED_ORIGINS = ['http://65.1.213.42:8010']
 # # QA
-# CSRF_TRUSTED_ORIGINS = ['http://65.2.101.254:8020']  # if we need to connect to Domain use as 'http://domain.com'
-# CORS_ALLOWED_ORIGINS = ['http://65.2.101.254:8020']
+# CSRF_TRUSTED_ORIGINS = ['http://65.1.213.42:8020']  # if we need to connect to Domain use as 'http://domain.com'
+# CORS_ALLOWED_ORIGINS = ['http://65.1.213.42:8020']
 # # Projects
-# CSRF_TRUSTED_ORIGINS = ['http://65.2.101.254:8030']  # if we need to connect to Domain use as 'http://domain.com'
-# CORS_ALLOWED_ORIGINS = ['http://65.2.101.254:8030']
+# CSRF_TRUSTED_ORIGINS = ['http://65.1.213.42:8030']  # if we need to connect to Domain use as 'http://domain.com'
+# CORS_ALLOWED_ORIGINS = ['http://65.1.213.42:8030']
 # LIVE
-CSRF_TRUSTED_ORIGINS = ['http://65.2.101.254:8040']  # if we need to connect to Domain use as 'http://domain.com'
-CORS_ALLOWED_ORIGINS = ['http://65.2.101.254:8040']
+CSRF_TRUSTED_ORIGINS = ['http://65.1.213.42:8040']  # if we need to connect to Domain use as 'http://domain.com'
+CORS_ALLOWED_ORIGINS = ['http://65.1.213.42:8040']
 
 # Application definition
 INSTALLED_APPS = [
