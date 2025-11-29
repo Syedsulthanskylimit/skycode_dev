@@ -1,0 +1,89 @@
+version: "3.9"
+
+services:
+  backend_live:
+    build: .
+    container_name: backend_qa
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8040:8000"
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: Skycode@2025
+      POSTGRES_DB: skycode_db_live
+      POSTGRES_HOST: db_live
+      POSTGRES_PORT: 5440
+      REDIS_HOST: redis_live
+      REDIS_PORT: 6340
+    depends_on:
+      - db_live 
+      - redis_live
+    restart: always
+
+  worker_qa:
+    build: .
+    container_name: celery_worker
+    command: celery -A formbuilder_backend worker --pool=solo -l info
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: Skycode@2025
+      POSTGRES_DB: skycode_db_live
+      POSTGRES_HOST: db_live
+      POSTGRES_PORT: 5440
+      REDIS_HOST: redis_live
+      REDIS_PORT: 6340
+    depends_on:
+      - backend_live                                                                                                                                                                                                                                          
+      - db_live
+      - redis_live
+    restart: always
+
+  beat_qa:
+    build: .
+    container_name: celery_beat
+    command: celery -A formbuilder_backend beat -l info
+    volumes:
+      - .:/app
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: Skycode@2025
+      POSTGRES_DB: skycode_db_qa
+      POSTGRES_HOST: db_qa
+      POSTGRES_PORT: 5440
+      REDIS_HOST: redis_live
+      REDIS_PORT: 6340
+    depends_on:
+      - backend_live
+      - db_live
+      - redis_live
+    restart: always
+
+  db_qa :
+    image: postgres:17
+    container_name: db_live
+    restart: always
+    ports:
+      - "5440:5432"
+    environment:
+      POSTGRES_USER: admin_user
+      POSTGRES_PASSWORD: Skycode@2025
+      POSTGRES_DB: skycode_db_live
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  redis_qa:
+    image: redis:7
+    container_name: redis_live
+    command: ["redis-server", "--port", "6379"]
+    ports:
+      - "6340:6379"
+    volumes:
+      - redisdata:/data
+    restart: always
+
+volumes:
+  redisdata:
