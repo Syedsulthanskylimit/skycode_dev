@@ -55,11 +55,11 @@ jobs:
             cd /home/ubuntu/LIVE
 
             echo "Pulling latest docker images..."
-            docker-compose pull
+            sudo docker-compose pull
 
             echo "Restarting services..."
-            docker-compose down
-            docker-compose up -d
+            sudo docker-compose down
+            sudo docker-compose up -d
 
             echo "Deployment Completed Successfully!"
           EOF
